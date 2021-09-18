@@ -7,6 +7,7 @@ int main() {
     MoveCommand MoveCommand1;
     assert(MoveCommand1.getSpeed() == 0 );
     cout << MoveCommand1.getTime() << endl;
+    
     MoveCommand MoveCommand2(100);
     assert( MoveCommand2.getSpeed() == 100 );
     cout << "Current time: " << MoveCommand2.getTime() << endl;

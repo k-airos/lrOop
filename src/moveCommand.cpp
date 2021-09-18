@@ -10,9 +10,9 @@ MoveCommand::MoveCommand(int NewSpeed) {
     this->time = setTime();
 }
 
-MoveCommand::MoveCommand(const MoveCommand &MoveCommand) {
-    speed = MoveCommand.speed;
-    time  = setTime();
+MoveCommand::MoveCommand(const MoveCommand &item) {
+    speed = item.speed;
+    time  = item.time;
 }
 
 void MoveCommand::setSpeed(int speed) {
