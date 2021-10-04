@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 #include <cassert>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -15,6 +17,7 @@ public:
     MoveCommand(int speed);
 
     MoveCommand(const MoveCommand &MoveCommand);
+    MoveCommand(int speed, std::string str);
 
 
     std::string getTime() {
@@ -45,24 +48,36 @@ private:
             this->next = NULL;
         };
         ListElement(const MoveCommand &item): obj( item ), next ( NULL ) {};
+        ListElement(const ListElement &item){
+            this->obj = MoveCommand(item.obj);
+            this->next = NULL;
+        }
 
         MoveCommand obj;
         ListElement *next = NULL;
     };
 
+    ListElement *TAIL = NULL;
+    ListElement *preTAIL = NULL;
+    ListElement *tmp = NULL;
+
 
 public:
-    ListElement *first = NULL;
+    ListElement *HEAD = NULL;
     Queue();
-    Queue(const MoveCommand &obj);
+    Queue(const Queue &obj);
     void add(const MoveCommand &obj);
     void del(int pos);
     void insert(int pos, const MoveCommand &d);
-    MoveCommand &get(int pos) const;
+    MoveCommand &get(int pos);
     int getCount() const {return count;};
     void getFile();
-    void setFile();
+    Queue setFile();
     void allDelete();
+    bool equalty( const Queue &obj1 );
+    double xCoordinate(std::string timePoint);
+
+
 
     class Iterator {
     public:
@@ -93,7 +108,7 @@ public:
             if( m_node ) {
                 m_node = m_node->next;
             } else{
-                m_node = NULL;
+                assert(0);
             }
         }
 
